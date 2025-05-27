@@ -28,6 +28,22 @@ enum class HeatingMode : u_int16_t {
   // FF00
 };
 
+enum class VentMode : u_int16_t {
+  VENT_MODE_OFF = 0x00,
+  VENT_MODE_1 = 0x01,
+  VENT_MODE_2 = 0x02,
+  VENT_MODE_3 = 0x03,
+  VENT_MODE_4 = 0x04,
+  VENT_MODE_5 = 0x05,
+  VENT_MODE_6 = 0x06,
+  VENT_MODE_7 = 0x07,
+  VENT_MODE_8 = 0x08,
+  VENT_MODE_9 = 0x09,
+  VENT_MODE_10 = 0x0A,
+  VENT_MODE_ECO = 0x0B,
+  VENT_MODE_HIGH = 0x0D,
+};
+
 enum class ElectricPowerLevel : u_int16_t {
   ELECTRIC_POWER_LEVEL_0 = 0,
   ELECTRIC_POWER_LEVEL_900 = 900,
