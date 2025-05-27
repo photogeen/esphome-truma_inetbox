@@ -10,6 +10,7 @@ enum class TRUMA_SELECT_TYPE {
 
   HEATER_FAN_MODE,
   HEATER_ENERGY_MIX,
+  VENT_MODE,
 };
 
 enum class TRUMA_SELECT_TYPE_HEATER_FAN_MODE {
@@ -19,6 +20,22 @@ enum class TRUMA_SELECT_TYPE_HEATER_FAN_MODE {
   COMBI_HIGH = 2,
   VARIO_HEAT_AUTO = 2,
   BOOST = 3,
+};
+
+enum class TRUMA_SELECT_TYPE_VENT_MODE {
+  OFF = 0,
+  VENT_1 = 1,
+  VENT_2 = 2,
+  VENT_3 = 3,
+  VENT_4 = 4,
+  VENT_5 = 5,
+  VENT_6 = 6,
+  VENT_7 = 7,
+  VENT_8 = 8,
+  VENT_9 = 9,
+  VENT_10 = 10,
+  ECO = 11,
+  HIGH = 13,
 };
 
 enum class TRUMA_SELECT_TYPE_HEATER_ENERGY_MIX {
@@ -38,7 +55,9 @@ static const char *enum_to_c_str(const TRUMA_SELECT_TYPE val) {
     case TRUMA_SELECT_TYPE::HEATER_ENERGY_MIX:
       return "HEATER_ENERGY_MIX";
       break;
-
+    case TRUMA_SELECT_TYPE::VENT_MODE:
+      return "VENT_MODE";
+      break;
     default:
       return "";
       break;
