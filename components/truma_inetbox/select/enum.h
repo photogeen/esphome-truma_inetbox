@@ -35,7 +35,7 @@ enum class TRUMA_SELECT_TYPE_VENT_MODE {
   VENT_9 = 9,
   VENT_10 = 10,
   ECO = 11,
-  HIGH = 13,
+  VENT_HIGH = 13,
 };
 
 enum class TRUMA_SELECT_TYPE_HEATER_ENERGY_MIX {
