@@ -46,6 +46,12 @@ CONF_SUPPORTED_TYPE = {
         CONF_ICON: ICON_THERMOMETER,
         CONF_OPTIONS: ("Diesel", "Mix 1", "Mix 2", "Electric 1", "Electric 2"),
     },
+    "VENT_MODE": {
+        CONF_CLASS: truma_inetbox_ns.class_("TrumaHeaterSelect", select.Select, cg.Component),
+        CONF_TYPE: TRUMA_SELECT_TYPE_dummy_ns.VENT_MODE,
+        CONF_ICON: ICON_THERMOMETER,
+        CONF_OPTIONS: ("Off", "Vent 1", "Vent 2", "Vent 3", "Vent 4", "Vent 5", "Vent 6", "Vent 7", "Vent 8", "Vent 9", "Vent 10", "Eco", "High"),
+    },
 }
 
 
@@ -87,3 +93,4 @@ async def to_code(config):
     await cg.register_parented(var, config[CONF_TRUMA_INETBOX_ID])
 
     cg.add(var.set_type(CONF_SUPPORTED_TYPE[config[CONF_TYPE]][CONF_TYPE]))
+
