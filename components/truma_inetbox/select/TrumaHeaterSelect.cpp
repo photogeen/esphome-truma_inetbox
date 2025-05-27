@@ -68,7 +68,7 @@ void TrumaHeaterSelect::setup() {
             this->publish_state(this->at((size_t) TRUMA_SELECT_TYPE_VENT_MODE::ECO).value());
             break;
           case VentMode::VENT_MODE_HIGH:
-            this->publish_state(this->at((size_t) TRUMA_SELECT_TYPE_VENT_MODE::HIGH).value());
+            this->publish_state(this->at((size_t) TRUMA_SELECT_TYPE_VENT_MODE::VENT_HIGH).value());
             break;
           default:
             this->publish_state(this->at((size_t) TRUMA_SELECT_TYPE_VENT_MODE::OFF).value());
@@ -172,7 +172,7 @@ void TrumaHeaterSelect::control(const std::string &value) {
         case TRUMA_SELECT_TYPE_VENT_MODE::ECO:
           this->parent_->get_heater()->action_heater_vent_mode(VentMode::VENT_MODE_ECO);
           break;
-        case TRUMA_SELECT_TYPE_VENT_MODE::HIGH:
+        case TRUMA_SELECT_TYPE_VENT_MODE::VENT_HIGH:
           this->parent_->get_heater()->action_heater_vent_mode(VentMode::VENT_MODE_HIGH);
           break;
         default:
