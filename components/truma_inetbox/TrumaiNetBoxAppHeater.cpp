@@ -24,6 +24,7 @@ StatusFrameHeaterResponse *TrumaiNetBoxAppHeater::update_prepare() {
   this->update_status_.el_power_level_b = this->data_.el_power_level_b;
   this->update_status_.energy_mix_a = this->data_.energy_mix_a;
   this->update_status_.energy_mix_b = this->data_.energy_mix_b;
+  this->update_status_.vent_mode = this->data_.vent_mode;
 
   this->update_status_prepared_ = true;
   return &this->update_status_;
@@ -47,7 +48,12 @@ void TrumaiNetBoxAppHeater::create_update_data(StatusFrame *response, u_int8_t *
   TrumaStausFrameResponseStorage<StatusFrameHeater, StatusFrameHeaterResponse>::update_submitted();
 }
 
-void TrumaiNetBoxAppHeater::dump_data() const {}
+void TrumaiNetBoxAppHeater::dump_data() const {
+  ESP_LOGD(TAG, "StatusFrameHeater target_temp_room: %f target_temp_water: %f heating_mode: %02X el_power_level: %u energy_mix: %02X",
+           temp_code_to_decimal(this->data_.target_temp_room), temp_code_to_decimal(this->data_.target_temp_water),
+           (u_int8_t) this->data_.heating_mode, (u_int16_t) this->data_.el_power_level_a,
+           (u_int8_t) this->data_.energy_mix_a);
+}
 
 bool TrumaiNetBoxAppHeater::can_update() {
   return TrumaStausFrameResponseStorage<StatusFrameHeater, StatusFrameHeaterResponse>::can_update() &&
@@ -191,6 +197,19 @@ bool TrumaiNetBoxAppHeater::action_heater_energy_mix(EnergyMix energy_mix, Elect
   } else {
     heater->energy_mix_a = EnergyMix::ENERGY_MIX_GAS;
   }
+
+  this->update_submit();
+  return true;
+}
+
+bool TrumaiNetBoxAppHeater::action_heater_vent_mode(VentMode mode) {
+  if (!this->can_update()) {
+    ESP_LOGW(TAG, "Cannot update Truma.");
+    return false;
+  }
+  auto heater = this->update_prepare();
+
+  heater->vent_mode = mode;
 
   this->update_submit();
   return true;
