@@ -19,6 +19,7 @@ class TrumaiNetBoxAppHeater : public TrumaStausFrameResponseStorage<StatusFrameH
   bool action_heater_electric_power_level(u_int16_t value);
   bool action_heater_energy_mix(EnergyMix energy_mix,
                                 ElectricPowerLevel el_power_level = ElectricPowerLevel::ELECTRIC_POWER_LEVEL_0);
+  bool action_heater_vent_mode(VentMode mode);
 };
 
 }  // namespace truma_inetbox
