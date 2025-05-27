@@ -54,6 +54,7 @@ struct StatusFrameHeater {  // NOLINT(altera-struct-pack-align)
   TargetTemp target_temp_room;
   // Room
   HeatingMode heating_mode;
+  u_int8_t _recv_status_u3;
   ElectricPowerLevel el_power_level_a;
   TargetTemp target_temp_water;
   ElectricPowerLevel el_power_level_b;
@@ -65,7 +66,7 @@ struct StatusFrameHeater {  // NOLINT(altera-struct-pack-align)
   OperatingStatus operating_status;
   u_int8_t error_code_low;
   u_int8_t error_code_high;
-  u_int8_t heater_unknown_2;
+  VentMode vent_mode;
 } __attribute__((packed));
 
 // Length 12 (0x0C)
@@ -73,12 +74,14 @@ struct StatusFrameHeaterResponse {  // NOLINT(altera-struct-pack-align)
   TargetTemp target_temp_room;
   // Room
   HeatingMode heating_mode;
+  u_int8_t _recv_status_u3;
   ElectricPowerLevel el_power_level_a;
   TargetTemp target_temp_water;
   ElectricPowerLevel el_power_level_b;
   EnergyMix energy_mix_a;
   // Ignored?
   EnergyMix energy_mix_b;
+  VentMode vent_mode;
 } __attribute__((packed));
 
 // Length 24 (0x18)
@@ -149,7 +152,7 @@ struct StatusFrameConfig {  // NOLINT(altera-struct-pack-align)
   // 0x01 .. 0x0A
   u_int8_t display_brightness;
   Language language;
-  // Mit „AC SET“ wird ein Offset zwischen Kühlen und Heizen eingestellt.
+  // Mit "AC SET" wird ein Offset zwischen Kühlen und Heizen eingestellt.
   // Die Einstellung ist in Schritten von 0,5 °C im Bereich von 0 °C bis +5 °C möglich.
   TargetTemp ac_offset;
   TargetTemp temp_offset;
