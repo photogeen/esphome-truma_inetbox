@@ -57,6 +57,9 @@ sensor:
   - platform: truma_inetbox
     name: "Current Water Temperature"
     type: CURRENT_WATER_TEMPERATURE
+  - platform: truma_inetbox
+    name: "Vent Mode"
+    type: VENT_MODE
 
 select:
   - platform: truma_inetbox
@@ -70,3 +73,6 @@ select:
   - platform: truma_inetbox
     name: "Energy Mix"
     type: HEATER_ENERGY_MIX_DIESEL
+  - platform: truma_inetbox
+    name: "Vent Mode"
+    type: VENT_MODE
